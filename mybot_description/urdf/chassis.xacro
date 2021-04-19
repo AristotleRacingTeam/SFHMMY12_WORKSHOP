@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro='http://www.ros.org/wiki/xacro' name='chassis'>
+
+  <!-- Chassis Properties -->
+  <xacro:property name='base_length' value='0.4'/>
+  <xacro:property name='base_width' value='0.4'/>
+  <xacro:property name='base_height' value='0.025'/>
+  <xacro:property name='base_link_joint_offset' value='0.09'/>
+
+
+  <!-- Box Inertial -->
+  <xacro:macro name = 'box_inertial' params = 'mass x y z'>
+    <inertial>
+      <mass value = '${mass}'/>
+      <inertia ixx = '${mass / 12 * (z*z + y*y)}' ixy = '0.0' ixz = '0.0'
+               iyy = '${mass / 12 * (x*x + z*z)}' iyz = '0.0'
+               izz = '${mass / 12 * (y*y + z*z)}' />
+    </inertial>
+  </xacro:macro>
+
+  <!-- Base Link -->
+  <link name='base_link'>
+    <visual>
+      <geometry>
+        <box size ='${base_length} ${base_width} ${base_height}'/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size ='${base_length} ${base_width} ${base_height}'/>
+      </geometry>
+    </collision>
+
+    <xacro:box_inertial mass='1.0' x='${base_length}' y='${base_width}' z='${base_height}'/>
+  </link>
+
+  <!-- Base Footprint -->
+  <link name='base_footprint'>
+    <origin xyz='0 0 0' rpy='0 0 0'/>
+    <visual>
+      <geometry>
+        <box size='0.001 0.001 0.001'/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name='base_link_joint' type ='fixed'>
+    <origin xyz = '0 0 ${base_link_joint_offset}' rpy='0 0 0'/>
+    <parent link='base_footprint'/>
+    <child link='base_link'/>
+  </joint>
+
+</robot>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro='http://www.ros.org/wiki/xacro' name='caster_wheel'>
+
+  <!-- Caster Wheel Properties-->
+  <xacro:property name='caster_wheel_radius' value='0.04'/>
+  <xacro:property name='caster_wheel_joint_offset' value='-0.15'/>
+
+
+  <xacro:macro name='sphere_inertial' params='mass r'>
+    <inertial>
+      <mass value='${mass}'/>
+      <inertia ixx='${mass*2*(r*r)/5}' ixy='0.0' ixz='0.0'
+               iyy='${mass*2*(r*r)/5}' iyz='0.0'
+               izz='${mass*2*(r*r)/5}'/>
+    </inertial>
+  </xacro:macro>
+
+  <link name='caster_wheel'>
+    <visual>
+      <origin xyz='0 0 0' rpy='0 0 0'/>
+      <geometry>
+        <sphere radius='${caster_wheel_radius}'/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz='0 0 0' rpy='0 0 0'/>
+      <geometry>
+        <sphere radius='${caster_wheel_radius}'/>
+      </geometry>
+    </collision>
+
+    <xacro:sphere_inertial mass='0.8' r='${caster_wheel_radius}'/>
+
+  </link>
+
+  <joint name='caster_wheel_joint' type='continuous'>
+    <origin xyz='${caster_wheel_joint_offset} 0 -${caster_wheel_radius + 0.005}' rpy='0 0 0'/>
+    <axis xyz='0 1 0' rpy='0 0 0'/>
+    <child link='caster_wheel'/>
+    <parent link='base_link'/>
+  </joint>
+</robot>

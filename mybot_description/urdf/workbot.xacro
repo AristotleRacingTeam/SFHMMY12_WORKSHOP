@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro='http://www.ros.org/wiki/xacro' name='workbot'>
+
+  <xacro:include filename ='$(find mybot_description)/urdf/chassis.xacro'/>
+
+  <xacro:include filename ='$(find mybot_description)/urdf/wheels.xacro'/>
+
+  <xacro:include filename ='$(find mybot_description)/urdf/caster_wheel.xacro'/>
+
+  <xacro:include filename ='$(find mybot_description)/urdf/laser_sensor.xacro'/>
+
+  <xacro:include filename ='$(find mybot_description)/urdf/workbot_gazebo_plugins.xacro'/>
+</robot>

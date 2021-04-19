@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro='http://www.ros.org/wiki/xacro' name='laser_sensor'>
+
+  <!-- Laser Sensor Properties -->
+  <xacro:property name='laser_size_x' value='0.1'/>
+  <xacro:property name='laser_size_y' value='0.1'/>
+  <xacro:property name='laser_size_z' value='0.06'/>
+  <xacro:property name='laser_origin_x' value='0.15'/>
+  <xacro:property name='laser_origin_y' value='0'/>
+  <xacro:property name='laser_origin_z' value='0.0175'/>
+
+  <link name='laser_sensor'>
+    <visual>
+      <geometry>
+        <box size='${laser_size_x} ${laser_size_y} ${laser_size_z}'/>
+      </geometry>
+    </visual>
+
+    <xacro:box_inertial mass='0.2' x='${laser_size_x}' y='${laser_size_y}' z='${laser_size_z}'/>
+  </link>
+
+  <joint name='sensor_laser_joint' type='fixed'>
+    <origin xyz='${laser_origin_x} ${laser_origin_y} ${laser_origin_z}' rpy='0 0 0'/>
+    <child link='laser_sensor'/>
+    <parent link='base_link'/>
+  </joint>
+
+</robot>
