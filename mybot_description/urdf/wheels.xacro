@@ -43,6 +43,10 @@
       <child link='${prefix}_wheel'/>
       <parent link='base_link'/>
     </joint>
+    
+    <gazebo reference = '${prefix}_wheel'>
+      <material>Gazebo/Yellow</material>
+    </gazebo>
   </xacro:macro>
 
   <xacro:wheel prefix='left' reflect='1'/>
