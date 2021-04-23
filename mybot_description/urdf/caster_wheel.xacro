@@ -40,4 +40,8 @@
     <child link='caster_wheel'/>
     <parent link='base_link'/>
   </joint>
+  
+  <gazebo reference='caster_wheel'>
+    <material>Gazebo/Yellow</material>
+   </gazebo>
 </robot>
