@@ -55,6 +55,6 @@ def callback(SensorData):
 	motion_activator.publish(motion_activator_object)
 	rate.sleep()
 
-if _name_ == '_main_':
+if __name__ == '__main__':
 	try: data_provider()
 	except rospy.ROSInterruptException: pass
