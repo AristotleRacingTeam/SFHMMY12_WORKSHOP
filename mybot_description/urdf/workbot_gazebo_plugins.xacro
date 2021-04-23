@@ -10,8 +10,8 @@
       <wheelSeparation>${wheel_separation}</wheelSeparation>
       <wheelDiameter>${wheel_radius * 2}</wheelDiameter>
       <torque>20</torque>
-      <commandTopic>/robot/cmd_vel</commandTopic>
-      <odometryTopic>/robot/odom</odometryTopic>
+      <commandTopic>/workbot/cmd_vel</commandTopic>
+      <odometryTopic>/workbot/odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
       <robotBaseFrame>base_footprint</robotBaseFrame>
     </plugin>
@@ -43,7 +43,7 @@
         </noise>
       </ray>
       <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
-        <topicName>/robot/laser_scan</topicName>
+        <topicName>/workbot/laser_scan</topicName>
         <frameName>laser_sensor</frameName>
       </plugin>
     </sensor>
